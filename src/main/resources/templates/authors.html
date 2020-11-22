@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button type="button">Create</button>
+    <button>Update</button>
+    <button>Delete</button>
+    <table>
+        <thead>
+        <tr>
+            <th>
+            <th>First name
+            <th>Middle name
+            <th>Last name
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="author : ${authors}">
+            <td><input type="checkbox"></td>
+            <td data-th-text="${author.firstName}">
+            <td data-th-text="${author.middleName}">
+            <td data-th-text="${author.lastName}">
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

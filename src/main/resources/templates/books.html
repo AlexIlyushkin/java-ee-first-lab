@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>Create</button>
+<button>Update</button>
+<button>Delete</button>
+<table>
+    <thead>
+    <tr>
+        <th>Title
+        <th>Genre
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="book : ${books}">
+        <td data-th-text="${book.title}">
+        <td data-th-text="${book.genre}">
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

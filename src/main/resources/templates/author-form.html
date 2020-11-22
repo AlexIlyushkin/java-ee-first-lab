@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" data-th-action="@{/author/save}" data-th-object="${author}" method="post">
+    <table>
+        <tbody>
+        <tr>
+            <td><label>First name:</label></td>
+            <td><label id="firstNameLabel" for="firstName"></label><input id="firstName"
+                                                      type="text"
+                                                      data-th-field="*{firstName}">
+            </td>
+        </tr>
+        <tr>
+            <td><label>Middle name:</label></td>
+            <td><label>
+                <input type="text" data-th-field="*{middleName}">
+            </label></td>
+        </tr>
+        <tr>
+            <td><label>Last name:</label></td>
+            <td><input tabindex="text" data-th-field="*{lastName}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit">
+    <button>My button</button>
+</form>
+<script type="text/javascript">
+    const FIRST_NAME_FIELD_ID = "firstName";
+
+    let firstNameField = document.getElementById(FIRST_NAME_FIELD_ID);
+    firstNameField.onblur = () => firstNameField.value = 'например, Ванек';
+</script>
+</body>
+</html>
