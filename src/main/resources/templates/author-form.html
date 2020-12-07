@@ -1,40 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript">
+        const FIRST_NAME_FIELD_PLACEHOLDER = "например, Иван";
+        const MIDDLE_NAME_FIELD_PLACEHOLDER = "например, Иванович";
+        const LAST_NAME_FIELD_PLACEHOLDER = "например, Иванов";
+        const EMPTY = "";
+
+        function onFirstNameFieldBlur(firstNameField) {
+            if (firstNameField.value.length === 0) {
+                firstNameField.value = FIRST_NAME_FIELD_PLACEHOLDER;
+            }
+        }
+
+        function onFirstNameFieldFocus(firstNameField) {
+            if (firstNameField.value === FIRST_NAME_FIELD_PLACEHOLDER) {
+                firstNameField.value = EMPTY;
+            }
+        }
+
+        function onMiddleNameFieldBlur(middleNameField) {
+            if (middleNameField.value.length === 0) {
+                middleNameField.value = MIDDLE_NAME_FIELD_PLACEHOLDER;
+            }
+        }
+
+        function onMiddleNameFieldFocus(middleNameField) {
+            if (middleNameField.value === MIDDLE_NAME_FIELD_PLACEHOLDER) {
+                middleNameField.value = EMPTY;
+            }
+        }
+
+        function onLastNameFieldBlur(lastNameField) {
+            if (lastNameField.value.length === 0) {
+                lastNameField.value = LAST_NAME_FIELD_PLACEHOLDER;
+            }
+        }
+
+        function onLastNameFieldFocus(lastNameField) {
+            if (lastNameField.value === LAST_NAME_FIELD_PLACEHOLDER) {
+                lastNameField.value = EMPTY;
+            }
+        }
+    </script>
 </head>
 <body>
-<form action="#" data-th-action="@{/author/save}" data-th-object="${author}" method="post">
+<form id="authorForm"
+      action="#"
+      data-th-action="@{/author/save}"
+      data-th-object="${author}"
+      data-th-method="post">
     <table>
         <tbody>
         <tr>
             <td><label>First name:</label></td>
-            <td><label id="firstNameLabel" for="firstName"></label><input id="firstName"
-                                                      type="text"
-                                                      data-th-field="*{firstName}">
+            <td><input id="firstName"
+                       type="text"
+                       onblur="onFirstNameFieldBlur(this)"
+                       onfocus="onFirstNameFieldFocus(this)"
+                       data-th-field="*{firstName}">
             </td>
         </tr>
         <tr>
             <td><label>Middle name:</label></td>
-            <td><label>
-                <input type="text" data-th-field="*{middleName}">
-            </label></td>
+            <td>
+                <input id="middleName"
+                       type="text"
+                       onblur="onMiddleNameFieldBlur(this)"
+                       onfocus="onMiddleNameFieldFocus(this)"
+                       data-th-field="*{middleName}">
+            </td>
         </tr>
         <tr>
             <td><label>Last name:</label></td>
-            <td><input tabindex="text" data-th-field="*{lastName}"></td>
+            <td>
+                <input id="lastName"
+                       tabindex="text"
+                       onblur="onLastNameFieldBlur(this)"
+                       onfocus="onLastNameFieldFocus(this)"
+                       data-th-field="*{lastName}">
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create"></td>
+            <td><a data-th-href="@{/author/list}">Cancel</a></td>
         </tr>
         </tbody>
     </table>
-    <input type="submit">
-    <button>My button</button>
 </form>
-<script type="text/javascript">
-    const FIRST_NAME_FIELD_ID = "firstName";
-
-    let firstNameField = document.getElementById(FIRST_NAME_FIELD_ID);
-    firstNameField.onblur = () => firstNameField.value = 'например, Ванек';
-</script>
 </body>
 </html>

@@ -11,5 +11,5 @@ import java.util.UUID;
  * @author Alex Ilyushkin
  */
 @Repository
-public interface AuthorRepository extends JpaRepository<Author, UUID> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 }

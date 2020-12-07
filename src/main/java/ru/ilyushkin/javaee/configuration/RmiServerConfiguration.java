@@ -15,7 +15,7 @@ import ru.ilyushkin.javaee.service.BookServiceBean;
  * @author Alex Ilyushkin
  */
 @Configuration
-public class RmiServerConfig {
+public class RmiServerConfiguration {
 
     private static final String AUTHOR_SERVICE_URL = "/httpInvoker/authorService";
     private static final String BOOK_SERVICE_URL = "/httpInvoker/bookService";
@@ -28,7 +28,7 @@ public class RmiServerConfig {
     @Qualifier(BookServiceBean.NAME)
     BookService bookService;
 
-    @Bean(name = AUTHOR_SERVICE_URL)
+    @Bean(AUTHOR_SERVICE_URL)
     public HttpInvokerServiceExporter authorServiceHttpInvokerServiceExporter() {
         HttpInvokerServiceExporter httpInvokerServiceExporter = new HttpInvokerServiceExporter();
         httpInvokerServiceExporter.setService(authorService);
@@ -37,7 +37,7 @@ public class RmiServerConfig {
         return httpInvokerServiceExporter;
     }
 
-    @Bean(name = BOOK_SERVICE_URL)
+    @Bean(BOOK_SERVICE_URL)
     public HttpInvokerServiceExporter bookServiceHttpInvokerServiceExporter() {
         HttpInvokerServiceExporter httpInvokerServiceExporter = new HttpInvokerServiceExporter();
         httpInvokerServiceExporter.setService(bookService);

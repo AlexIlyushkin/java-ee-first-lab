@@ -9,7 +9,11 @@ import java.util.StringJoiner;
  */
 @Entity
 @Table(name = "BOOK")
-public class Book extends BaseUuidEntity implements Serializable {
+public class Book implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @Column(name = "TITLE")
     private String title;
@@ -26,6 +30,14 @@ public class Book extends BaseUuidEntity implements Serializable {
     public Book(String title, String genre) {
         this.title = title;
         this.genre = genre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

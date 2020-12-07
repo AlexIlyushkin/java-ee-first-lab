@@ -3,28 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript">
+        let checkboxOfDeleteAuthorFormToSubmit;
+
+        function onDeleteAuthorFormCheckBoxChange(button) {
+
+        }
+
+        function onDeleteButtonClick(button) {
+            if (confirm("Do you want to delete this author?")) {
+                button.form.submit();
+            }
+        }
+
+        function onDeleteHrefClick(event) {
+            if (!confirm("Do you want to delete this author?")) {
+                event.preventDefault();
+            }
+        }
+    </script>
+    <style type="text/css">
+        #authorsTable {
+            border-bottom: 10px;
+            width: 1000px;
+        }
+        #createButton {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            appearance: button;
+            text-decoration: none;
+            color: initial;
+        }
+    </style>
 </head>
 <body>
-    <button type="button">Create</button>
-    <button>Update</button>
-    <button>Delete</button>
-    <table>
-        <thead>
-        <tr>
-            <th>
-            <th>First name
-            <th>Middle name
-            <th>Last name
-        </tr>
-        </thead>
-        <tbody>
-        <tr data-th-each="author : ${authors}">
-            <td><input type="checkbox"></td>
-            <td data-th-text="${author.firstName}">
-            <td data-th-text="${author.middleName}">
-            <td data-th-text="${author.lastName}">
-        </tr>
-        </tbody>
-    </table>
+<a id="createButton"
+   data-th-href="@{/author/form}" class="button">Create</a>
+<button id="deleteButton" onclick="onDeleteButtonClick()">Delete</button>
+<table id="authorsTable">
+    <thead>
+    <tr>
+        <th>
+        <th>First name
+        <th>Middle name
+        <th>Last name
+        <th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-th-each="author : ${authors}">
+        <td><input type="checkbox"></td>
+        <td data-th-text="${author.firstName}">
+        <td data-th-text="${author.middleName}">
+        <td data-th-text="${author.lastName}">
+        <td>
+            <form data-th-action="@{/author/delete/__${author.id}__}"
+                  data-th-object="${author}"
+                  data-th-method="post">
+                <input type="button" value="Delete" onclick="onDeleteButtonClick(this)">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

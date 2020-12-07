@@ -10,15 +10,25 @@
         <tbody>
         <tr>
             <td><label>Title:</label></td>
-            <td><input type="text" name="title" data-th-field="*{title}" placeholder="Title"></td>
+            <td><input type="text"
+                       name="title"
+                       data-th-field="*{title}"
+                       placeholder="Title"></td>
         </tr>
         <tr>
             <td><label>Genre:</label></td>
-            <td><input type="text" name="genre" data-th-field="*{genre}" placeholder="Genre"></td>
+            <td><input type="text"
+                       name="genre"
+                       data-th-field="*{genre}"
+                       placeholder="Genre"></td>
+        </tr>
+        <tr>
+            <td><input type="submit"></td>
+            <td><a id="cancelLink"
+                   data-th-href="@{/book/list}">Cancel</a></td>
         </tr>
         </tbody>
     </table>
-    <input type="submit">
 </form>
 </body>
 </html>

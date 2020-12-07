@@ -3,22 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        #booksTable {
+            width: 1000px;
+        }
+    </style>
 </head>
 <body>
-<button>Create</button>
-<button>Update</button>
-<button>Delete</button>
-<table>
+<a data-th-href="@{/book/form}">Create</a>
+<table id="booksTable">
     <thead>
     <tr>
+        <th>
         <th>Title
         <th>Genre
+        <th>
     </tr>
     </thead>
     <tbody>
     <tr data-th-each="book : ${books}">
+        <td><input class="selectRowCheckBox" type="checkbox"></td>
         <td data-th-text="${book.title}">
         <td data-th-text="${book.genre}">
+        <td><form data-th-action="@{/book/delete/__${book.id}__}"
+                  data-th-object="${book}"
+                  method="post">
+                <input type="submit" value="Delete">
+            </form></td>
     </tr>
     </tbody>
 </table>

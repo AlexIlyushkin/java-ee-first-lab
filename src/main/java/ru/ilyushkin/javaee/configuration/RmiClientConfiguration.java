@@ -11,7 +11,7 @@ import ru.ilyushkin.javaee.service.BookService;
  * @author Alex Ilyushkin
  */
 @Configuration
-public class RmiClientConfig {
+public class RmiClientConfiguration {
 
     public static final String AUTHOR_SERVICE_RMI_BEAN_NAME = "rmiAuthorService";
     public static final String BOOK_SERVICE_RMI_BEAN_NAME = "rmiBookService";

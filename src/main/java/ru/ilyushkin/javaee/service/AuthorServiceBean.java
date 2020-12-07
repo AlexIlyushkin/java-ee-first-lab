@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.ilyushkin.javaee.entity.Author;
 import ru.ilyushkin.javaee.repository.AuthorRepository;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Alex Ilyushkin
@@ -27,11 +29,23 @@ public class AuthorServiceBean implements AuthorService {
     @Override
     @Transactional(readOnly = true, propagation = Propagation.REQUIRES_NEW)
     public List<Author> findAll() {
-        return authorRepository.findAll();
+        List<Author> authors = authorRepository.findAll();
+        authors.forEach(System.out::println);
+        return authors;
     }
 
     @Override
     public Author save(Author author) {
         return authorRepository.save(author);
+    }
+
+    @Override
+    public void delete(Author author) {
+        authorRepository.delete(author);
+    }
+
+    @Override
+    public void deleteById(long authorId) {
+        authorRepository.deleteById(authorId);
     }
 }

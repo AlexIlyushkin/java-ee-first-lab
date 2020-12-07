@@ -10,7 +10,11 @@ import java.util.StringJoiner;
  */
 @Entity
 @Table(name = "AUTHOR")
-public class Author extends BaseUuidEntity implements Serializable {
+public class Author implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -32,6 +36,14 @@ public class Author extends BaseUuidEntity implements Serializable {
         this.middleName = middleName;
         this.lastName = lastName;
         this.books = books;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -69,6 +81,7 @@ public class Author extends BaseUuidEntity implements Serializable {
     @Override
     public String toString() {
         return new StringJoiner(", ", Author.class.getSimpleName() + "[", "]")
+                .add("id='" + getId() + "'")
                 .add("firstName='" + firstName + "'")
                 .add("middleName='" + middleName + "'")
                 .add("lastName='" + lastName + "'")
